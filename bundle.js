@@ -278,6 +278,8 @@
 	MovingObject.prototype.move = function () {
 	  if (this.isWrappable) {
 	    this.pos = this.game.wrap(this.pos);
+	  } else {
+
 	  }
 	  this.pos[0] += this.vel[0];
 	  this.pos[1] += this.vel[1];
@@ -329,7 +331,7 @@
 	};
 
 	Ship.prototype.fireBullet = function () {
-	  let bulletVel = [this.vel[0] + 2, this.vel[1] + 5];
+	  let bulletVel = [this.vel[0] * 2, this.vel[1] * 2];
 	  let bullet = new Bullet({pos: this.pos, vel: bulletVel, game: this.game});
 	  this.game.bullets.push(bullet);
 	};
@@ -348,7 +350,7 @@
 	// const Asteroid = require('./asteroid.js');
 
 	function Bullet(posOptions) {
-	  let options = {game: posOptions['game'], color: 'red', pos: posOptions['pos'], radius: 10, vel: posOptions['vel'], wrappable: false}
+	  let options = {game: posOptions['game'], color: 'red', pos: posOptions['pos'], radius: 5, vel: posOptions['vel'], wrappable: false}
 	  MovingObject.call(this, options);
 	}
 	Utils.inherits(Bullet, MovingObject);
